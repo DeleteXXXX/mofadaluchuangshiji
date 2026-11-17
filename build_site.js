@@ -202,10 +202,18 @@ mdFiles.forEach(full => {
     '<div class="home-cards">' +
     '<div class="home-card"><h2>小说正文</h2><p>全书 ' + novelList.length + ' 章，按顺序阅读，支持上一章/下一章翻页。</p><a class="btn" href="novel/index.html">进入阅读</a></div>' +
     '<div class="home-card"><h2>整理文档</h2><p>六个维度的系统整理：骨架、人物、时间线、世界观、伏笔、风格，助力续写。</p><a class="btn" href="zhengli/index.html">查看整理</a></div>' +
+    '<div class="home-card"><h2>下载全文</h2><p>下载《魔法大陆创世记—日出亚里斯（上中下）》完整 TXT 文件，方便离线阅读。</p><a class="btn" href="downloads/novel-full.txt" download="魔法大陆创世记—日出亚里斯（上中下）全文.txt">下载 TXT</a></div>' +
     '</div></div>' +
     '<footer class="site-footer">魔法大陆创世记 · 日出亚里斯 · 静态站点</footer>';
   fs.writeFileSync(path.join(OUT, 'index.html'), pageShell('魔法大陆创世记 · 日出亚里斯', 'css/style.css', bodyHtml), 'utf8');
 }
+
+const downloadsOut = path.join(OUT, 'downloads');
+fs.mkdirSync(downloadsOut, { recursive: true });
+fs.copyFileSync(
+  path.join(WD, '魔法大陆创世记—日出亚里斯（上中下）全文.txt'),
+  path.join(downloadsOut, 'novel-full.txt')
+);
 
 fs.mkdirSync(path.join(OUT, 'css'), { recursive: true });
 fs.writeFileSync(path.join(OUT, 'css', 'style.css'), CSS, 'utf8');
